@@ -24,10 +24,10 @@ func readFile(_ path: String) -> [Int] {
     return inputArray
 }
 
-func findPairOne(numbers: [Int]) -> Int {
+func findPairOne(numbers: [Int], target: Int) -> Int {
     for x in numbers {
         for y in numbers {
-            if x + y == 2020 {
+            if x + y == target {
                 return x * y
             }
         }
@@ -35,11 +35,11 @@ func findPairOne(numbers: [Int]) -> Int {
     return 0
 }
 
-func findPairTwo(numbers: [Int]) -> Int {
+func findPairTwo(numbers: [Int], target: Int) -> Int {
     for x in numbers {
         for y in numbers {
             for z in numbers {
-                if x + y + z == 2020 {
+                if x + y + z == target {
                     return x * y * z
                 }
             }
@@ -49,5 +49,5 @@ func findPairTwo(numbers: [Int]) -> Int {
 }
 var puzzleInput = readFile("input_1")
 
-print("Part one: \(findPairOne(numbers: puzzleInput))")
-print("Part two: \(findPairTwo(numbers: puzzleInput))")
+print("Part one: \(findPairOne(numbers: puzzleInput, target: 2020))")
+print("Part two: \(findPairTwo(numbers: puzzleInput, target: 2020))")
