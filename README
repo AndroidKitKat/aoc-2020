@@ -1,0 +1,6 @@
+advent of code done in swift with xcode
+
+more of a chore than it should be but i (a) want to learn how to use swift to 
+do normal stuff and (b) get comfortable with xcode
+
+already on day 1 i learned how to copy files to the output dir @ build time
