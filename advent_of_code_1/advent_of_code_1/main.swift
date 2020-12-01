@@ -24,33 +24,30 @@ func readFile(_ path: String) -> [Int] {
     return inputArray
 }
 
-
-var puzzleInput = readFile("input_1")
-
-var counter = 0
-
-// brute force approach
-var found = false
-for x in puzzleInput {
-    counter += 1
-    for y in puzzleInput {
-        counter += 1
-        for z in puzzleInput {
-            counter += 1
-            if x + y + z == 2020 {
-                // okay
-                print("The answer is: \(x * y * z)!")
-                found = true
-                break;
+func findPairOne(numbers: [Int]) -> Int {
+    for x in numbers {
+        for y in numbers {
+            if x + y == 2020 {
+                return x * y
             }
         }
-        if found {
-            break
-        }
     }
-    if found {
-        break
-    }
+    return 0
 }
 
-print(counter)
+func findPairTwo(numbers: [Int]) -> Int {
+    for x in numbers {
+        for y in numbers {
+            for z in numbers {
+                if x + y + z == 2020 {
+                    return x * y * z
+                }
+            }
+        }
+    }
+    return 0
+}
+var puzzleInput = readFile("input_1")
+
+print("Part one: \(findPairOne(numbers: puzzleInput))")
+print("Part two: \(findPairTwo(numbers: puzzleInput))")
