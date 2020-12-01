@@ -26,10 +26,17 @@ func readFile(_ path: String) -> [Int] {
 
 
 var puzzleInput = readFile("input_1")
+
+var counter = 0
+
+// brute force approach
 var found = false
 for x in puzzleInput {
+    counter += 1
     for y in puzzleInput {
+        counter += 1
         for z in puzzleInput {
+            counter += 1
             if x + y + z == 2020 {
                 // okay
                 print("The answer is: \(x * y * z)!")
@@ -45,3 +52,5 @@ for x in puzzleInput {
         break
     }
 }
+
+print(counter)
