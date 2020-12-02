@@ -49,5 +49,5 @@ func findPairTwo(numbers: [Int], target: Int) -> Int {
 }
 var puzzleInput = readFile("input_1")
 
-print("Part one: \(findPairOne(numbers: puzzleInput, target: 2020))")
-print("Part two: \(findPairTwo(numbers: puzzleInput, target: 2020))")
+print("Part one: \(findPairOne(numbers: puzzleInput, target: 2_020))")
+print("Part two: \(findPairTwo(numbers: puzzleInput, target: 2_020))")
