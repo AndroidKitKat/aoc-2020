@@ -60,15 +60,13 @@ func checkPassword(password: inputEntry) -> Bool {
             count += 1
         }
     }
-    if count >= password.startingNum && count <= password.endingNum {
-        return true
-    }
-    return false
+    return count >= password.startingNum && count <= password.endingNum
 }
 
 // part two
 func checkPasswordHarder(password: inputEntry) -> Bool {
-    return xor(a: password.password[password.startingNum - 1] == password.character, b: password.password[password.endingNum - 1] == password.character)
+    return xor(a: password.password[password.startingNum - 1] == password.character,
+               b: password.password[password.endingNum - 1] == password.character)
 }
 
 var puzzleInput = readFile("input_2")
