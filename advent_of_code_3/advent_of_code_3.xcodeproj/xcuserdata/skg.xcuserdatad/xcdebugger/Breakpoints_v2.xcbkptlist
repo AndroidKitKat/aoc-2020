@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "FBA8F423-350E-4DAC-B8EC-8F33159AF949"
+   uuid = "3A52316F-688B-457A-9F1D-DE793D429469"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "169CF719-5DE6-45C6-AE86-AB0E80D6BC9F"
+            uuid = "FC5CB359-E0B9-4599-8AEA-D458D751F9C8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "advent_of_code_2/main.swift"
+            filePath = "advent_of_code_3/main.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "xor(a:b:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "traverseLandscape(landscape:rightMove:downMove:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
