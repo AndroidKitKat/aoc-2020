@@ -70,11 +70,11 @@ func splitBoardingPass(bPass: String) -> (String, String) {
     return (String(bPass.prefix(7)), String(bPass.suffix((3))))
 }
 
-/// Finds the seat I am supposed to be sitting in
+/// Finds the seat I am supposed to be sitting in (thanks Mom for working it out with me)
 /// - Parameter boardIds: Array of all boarding pass IDs
 /// - Returns: The seat I am supposed to be sitting in
 func findMySeat(boardIds: [Int]) -> Int {
-    // jank but works
+    // not jank anymore
     let sortedSeats = boardIds.sorted()
     let largestID = sortedSeats[sortedSeats.count - 1]
     let smallestID = sortedSeats[0]
