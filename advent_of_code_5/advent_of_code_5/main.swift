@@ -75,17 +75,12 @@ func splitBoardingPass(bPass: String) -> (String, String) {
 /// - Returns: The seat I am supposed to be sitting in
 func findMySeat(boardIds: [Int]) -> Int {
     // jank but works
-    var sortedSeats = boardIds.sorted()
+    let sortedSeats = boardIds.sorted()
+    let largestID = sortedSeats[sortedSeats.count - 1]
     let smallestID = sortedSeats[0]
-    for i in 0..<boardIds.count {
-        sortedSeats[i] = sortedSeats[i] - smallestID + 1 // breaks without this magic number
-    }
-    
-    let seatCount = sortedSeats.count
-    let actualTotal = sortedSeats.reduce(0, +)
-    let expectedTotal = (seatCount + 1) + seatCount * (seatCount + 1) / 2
-    
-    return expectedTotal - actualTotal + smallestID - 1// need to account for subtraction
+    let expectedSum = ((largestID - smallestID + 1) / 2 ) * (smallestID + largestID)
+    let actualSum = boardIds.reduce(0, +)
+    return expectedSum - actualSum
 }
 
 var puzzleInput = readFile(path: "input_5")
@@ -102,5 +97,3 @@ for boardingPass in puzzleInput {
 print("Part 1: \(seats.max() ?? 0)")
 
 print("Part 2: \(findMySeat(boardIds: seats))")
-
-
