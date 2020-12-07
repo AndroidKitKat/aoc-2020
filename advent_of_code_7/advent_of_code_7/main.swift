@@ -56,7 +56,7 @@ func readFile(path: String) -> [String] {
     return inputArray
 }
 
-func parseInput(puzzleInput: [String]) -> [Bag] {
+func parseInput(puzzleInput: [String]) -> Dictionary<String, Bag> {
     // There are two types of strings
     
     // light red bags contain 1 bright white bag, 2 muted yellow bags.
@@ -73,7 +73,7 @@ func parseInput(puzzleInput: [String]) -> [Bag] {
 //    let bagColorRegex = NSRegularExpression("^[a-z]* [a-z]*")
 //    let bagContentsRegex = NSRegularExpression("[0-9]+ [a-z]* [a-z]*")
     
-    var luggageRack = [Bag]()
+    var luggageRack: Dictionary<String, Bag> = [:]
     
     for rule in puzzleInput {
         let bagColor = rule.regex(pattern: "^[a-z]* [a-z]*")
@@ -86,28 +86,38 @@ func parseInput(puzzleInput: [String]) -> [Bag] {
             bagContentsDict[bagContentsDescriptor] = Int(bagContentsCount)
         }
         let newBag = Bag(color: bagColor[0], contents: bagContentsDict)
-        luggageRack.append(newBag)
+        luggageRack[newBag.color] = newBag
     }
-    
     return luggageRack
 }
 
-func countBags(bag: Bag, desiredColor: String) -> Int {
-    print("\(bag.color) can contain \(desiredColor)")
+func doesItHave(bags: Dictionary<String, Bag>, bag: Bag, desiredColor: String) -> Bool {
+    if bag.color == desiredColor {
+        return true
+    }
+    
+    for bagKey in bag.contents.keys where doesItHave(bags: bags, bag: bags[bagKey]!, desiredColor: desiredColor) {
+        return true
+    }
+    
+    return false
+    
+}
+
+func countBag(bags: Dictionary<String, Bag>, desiredColor: String) -> Int {
     var count: Int = 0
-    if bag.contents[desiredColor] != nil {
-        for (bagKey, bagValue) in bag.contents {
-            // now i just need to do the thing right?
-        }
+    for (bagKey, bagValue) in bags[desiredColor]!.contents {
+        count = count + (bagValue * (countBag(bags: bags, desiredColor: bagKey) + 1))
     }
     return count
 }
 
-let puzzleInput = readFile(path: "demo_input_7")
+let puzzleInput = readFile(path: "input_7")
 let bags = parseInput(puzzleInput: puzzleInput)
 
-for bag in bags {
-    if bag.contents["shiny gold"] != nil {
-        print(countBags(bag: bag, desiredColor: "shiny gold"))
-    }
+var dayOneCount: Int = 0
+for bag in bags.values where doesItHave(bags: bags, bag: bag, desiredColor: "shiny gold") && bag.color != "shiny gold" {
+    dayOneCount += 1
 }
+print("Part 1: \(dayOneCount)")
+print("Part 2: \(countBag(bags: bags, desiredColor: "shiny gold"))")
