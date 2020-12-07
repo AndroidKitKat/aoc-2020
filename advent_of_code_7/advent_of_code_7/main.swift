@@ -56,7 +56,7 @@ func readFile(path: String) -> [String] {
     return inputArray
 }
 
-func parseInput(puzzleInput: [String]) {
+func parseInput(puzzleInput: [String]) -> [Bag] {
     // There are two types of strings
     
     // light red bags contain 1 bright white bag, 2 muted yellow bags.
@@ -88,16 +88,26 @@ func parseInput(puzzleInput: [String]) {
         let newBag = Bag(color: bagColor[0], contents: bagContentsDict)
         luggageRack.append(newBag)
     }
-    for bag in luggageRack {
-        print("""
-Color: \(bag.color)
-Contents: \(bag.contents)
+    
+    return luggageRack
+}
 
-""")
+func countBags(bag: Bag, desiredColor: String) -> Int {
+    print("\(bag.color) can contain \(desiredColor)")
+    var count: Int = 0
+    if bag.contents[desiredColor] != nil {
+        for (bagKey, bagValue) in bag.contents {
+            // now i just need to do the thing right?
+        }
     }
+    return count
 }
 
 let puzzleInput = readFile(path: "demo_input_7")
-parseInput(puzzleInput: puzzleInput)
+let bags = parseInput(puzzleInput: puzzleInput)
 
-//print(puzzleInput)
+for bag in bags {
+    if bag.contents["shiny gold"] != nil {
+        print(countBags(bag: bag, desiredColor: "shiny gold"))
+    }
+}
