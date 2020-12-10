@@ -53,7 +53,11 @@ func beatXMAS(dataStream: [Int], desiredNum: Int) -> Int {
         beegWindow.append(x)
         for (j, y) in dataStream.enumerated() where j > i {
             beegWindow.append(y)
-            if beegWindow.reduce(0, +) == desiredNum {
+            let beegSum = beegWindow.reduce(0, +)
+            if beegSum > desiredNum {
+                break
+            }
+            if beegSum == desiredNum {
                 return beegWindow.min()! + beegWindow.max()!
             }
         }
